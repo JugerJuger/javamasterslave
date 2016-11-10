@@ -84,7 +84,7 @@ public class ConsoleManager {
 	}
 
 	private void initializeComands() {
-		for (CommandManager com : CommandManager.values()) {
+		for (CommandFactory com : CommandFactory.values()) {
 			comands.add(com.name());
 		}
 	}
@@ -103,7 +103,7 @@ public class ConsoleManager {
 
 	public void help() {
 		writeWithLt("List of avalable comands:");
-		for (CommandManager com : CommandManager.values()) {
+		for (CommandFactory com : CommandFactory.values()) {
 			write(com.name());
 		}
 	}
