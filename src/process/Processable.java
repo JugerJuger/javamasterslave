@@ -2,6 +2,6 @@ package process;
 
 public interface Processable {
 	
-	void process();
+	void process(String[] s);
 	
 }

@@ -14,7 +14,7 @@ import utilize.ConsoleManager;
 public class MasterBot extends Thread {
 
 	private static ConsoleManager cm = ConsoleManager.getInstance();
-	
+
 	private static final String KEY = "-p";
 
 	private static String validateArgument(String[] args) {
@@ -26,12 +26,12 @@ public class MasterBot extends Thread {
 			throw new IllegalArgumentException();
 
 	}
-	
+
 	public static void main(String args[]) {
-		Integer port = Integer.parseInt(validateArgument(args));
+		Integer port = 3128;//Integer.parseInt(validateArgument(args));
 		try {
 			int i = 0;
-			
+
 			ServerSocket listener = new ServerSocket(port, 0, InetAddress.getByName("localhost"));
 			StringBuilder out = new StringBuilder();
 			cm.writeWithLt(out.append("MasterBot initialized at port ").append(port).toString());
@@ -40,9 +40,12 @@ public class MasterBot extends Thread {
 				@Override
 				public void run() {
 					try {
+						int i = 0;
 						while (true) {
+							i++;
 							Socket s = listener.accept();
-							SocketEntity se = new SocketEntity(s, LocalDateTime.now());
+							SocketEntity se = new SocketEntity(s, LocalDateTime.now(),
+									new StringBuilder("Slave").append(i).toString());
 							Resources.addList(se);
 						}
 					} catch (IOException e) {
@@ -53,7 +56,8 @@ public class MasterBot extends Thread {
 			t.setDaemon(true);
 			t.start();
 			while (true) {
-				CommandFactory.process(CommandFactory.valueOf(cm.read().toUpperCase())).process();
+				String s[] = cm.read().split(" ");
+				CommandFactory.process(CommandFactory.valueOf(s[0].toUpperCase())).process(s);
 			}
 		} catch (Exception e) {
 			cm.writeWithLt("init error: " + e);

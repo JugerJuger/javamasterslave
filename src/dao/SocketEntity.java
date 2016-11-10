@@ -6,20 +6,23 @@ import java.time.LocalDateTime;
 public class SocketEntity {
 
 	private Socket socket;
-
+	
 	private String host;
 	private Integer port;
 
+	private String name;
+	
 	private LocalDateTime ldt;
 
 	public SocketEntity() {
 	}
 
-	public SocketEntity(Socket socket, LocalDateTime ldt) {
+	public SocketEntity(Socket socket, LocalDateTime ldt, String name) {
 		this.socket = socket;
 		this.host = socket.getInetAddress().getHostAddress();
 		this.port = socket.getPort();
 		this.ldt = ldt;
+		this.name = name;
 	}
 
 	public Socket getSocket() {
@@ -52,6 +55,14 @@ public class SocketEntity {
 
 	public void setLdt(LocalDateTime ldt) {
 		this.ldt = ldt;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }

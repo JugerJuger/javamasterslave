@@ -32,10 +32,10 @@ public class ConsoleManager {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
 		try {
 			result = reader.readLine();
-			if (!comands.contains(result.toUpperCase())) {
-				help();
-				result = read();
-			}
+//			if (!comands.contains(result.toUpperCase())) {
+//				help();
+//				result = read();
+//			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -49,10 +49,10 @@ public class ConsoleManager {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
 		try {
 			result = reader.readLine();
-			if (!comands.contains(result.toUpperCase())) {
-				System.out.println(warning);
-				result = read();
-			}
+//			if (!comands.contains(result.toUpperCase())) {
+//				System.out.println(warning);
+//				result = read();
+//			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
